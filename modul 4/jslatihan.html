@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Latihan Praktikum Pemrograman Web</title>
+</head>
+<body>
+    <form name="frmLatihan" method="POST" onsubmit="return validasiForm()">
+        <table>
+            <tr>
+                <td>Nama</td>
+                <td>:</td>
+                <td><input type="text" id="nama" name="nama"></td>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td>:</td>
+                <td><input type="text" id="email" name="email"></td>
+            </tr>
+            <tr>
+                <td valign="top">Komentar</td>
+                <td valign="top">:</td>
+                <td><textarea id="komentar" name="komentar" cols="30" rows="5"></textarea></td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <input type="submit" value="Simpan">
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    <script>
+        function validasiForm() {
+            const nama = document.getElementById("nama").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const komentar = document.getElementById("komentar").value.trim();
+
+            // 1. Cek apakah ada field yang kosong
+            if (nama === "" || email === "" || komentar === "") {
+                alert("Semua field (Nama, Email, Komentar) tidak boleh ada yang kosong!");
+                return false;
+            }
+
+            // 2. Cek apakah field nama mengandung angka atau simbol (hanya boleh huruf dan spasi)
+            const regexNama = /^[a-zA-Z\s]+$/;
+            if (!regexNama.test(nama)) {
+                alert("Field Nama tidak boleh mengandung angka atau simbol!");
+                document.getElementById("nama").focus();
+                return false;
+            }
+
+            alert("Data berhasil disimpan!");
+            return true;
+        }
+    </script>
+</body>
+</html>

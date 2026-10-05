@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Tugas 2 - Kalkulator Sederhana</title>
+</head>
+<body>
+    <h2>Kalkulator Sederhana</h2>
+    <table>
+        <tr>
+            <td><label for="angka1">Angka Pertama:</label></td>
+            <td><input type="number" id="angka1"></td>
+        </tr>
+        <tr>
+            <td><label for="angka2">Angka Kedua:</label></td>
+            <td><input type="number" id="angka2"></td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <button onclick="hitung('+')">+</button>
+                <button onclick="hitung('-')">-</button>
+                <button onclick="hitung('*')">*</button>
+                <button onclick="hitung('/')">/</button>
+            </td>
+        </tr>
+    </table>
+
+    <h3 id="hasilKalkulator">Hasil: -</h3>
+
+    <script>
+        function hitung(operator) {
+            const input1 = document.getElementById("angka1").value;
+            const input2 = document.getElementById("angka2").value;
+            const hasilElement = document.getElementById("hasilKalkulator");
+
+            if (input1 === "" || input2 === "") {
+                alert("Harap isi kedua angka input!");
+                return;
+            }
+
+            const num1 = parseFloat(input1);
+            const num2 = parseFloat(input2);
+            let hasil = 0;
+
+            if (operator === '+') {
+                hasil = num1 + num2;
+            } else if (operator === '-') {
+                hasil = num1 - num2;
+            } else if (operator === '*') {
+                hasil = num1 * num2;
+            } else if (operator === '/') {
+                if (num2 === 0) {
+                    alert("Pembagian dengan angka 0 tidak diperbolehkan!");
+                    return;
+                }
+                hasil = num1 / num2;
+            }
+
+            hasilElement.innerText = "Hasil: " + hasil;
+        }
+    </script>
+</body>
+</html>
